@@ -5,10 +5,8 @@ window.onload = function() {
     div.onmouseout = cambiarTamano;
 };
 
-function cambiarTamano(e) {
+function cambiarTamano(evento) {
     // Garantiza compatibilidad con versiones antiguas de IE
-    var evento = e || window.event;
-
     if (evento.type === "mouseover") {
         this.style.fontSize = "16pt";
     } else if (evento.type === "mouseout") {
