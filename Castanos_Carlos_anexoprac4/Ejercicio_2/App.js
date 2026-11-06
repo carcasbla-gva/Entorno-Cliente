@@ -1,20 +1,15 @@
-window.onload = function() {
-    var enlace = document.getElementById("miEnlace");
-
+window.onload = function () {
+    let enlace = document.getElementById("miEnlace");
     enlace.onclick = evitarNavegacion;
 };
 
-function evitarNavegacion(e) {
-    var evento = e || window.event;
+function evitarNavegacion(event) {
 
-    alert("Se ha cancelado la navegación. El enlace no te redirigirá.");
-
-    // Evita que el navegador abra la URL del atributo href
-    if (evento.preventDefault) {
-        evento.preventDefault(); // Estándar W3C
+    if (event.preventDefault) {
+        event.preventDefault();
+        alert("Se ha cancelado la navegación. El enlace no te redirigirá.");
     } else {
-        evento.returnValue = false; // Internet Explorer
+        event.returnValue = false;
     }
-
     return false;
 }
