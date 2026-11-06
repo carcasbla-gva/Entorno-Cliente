@@ -3,13 +3,13 @@ window.onload = function () {
     enlace.onclick = evitarNavegacion;
 };
 
-function evitarNavegacion(event) {
+function evitarNavegacion(evento) {
 
-    if (event.preventDefault) {
-        event.preventDefault();
+    if (evento.preventDefault) {
+        evento.preventDefault();
         alert("Se ha cancelado la navegación. El enlace no te redirigirá.");
     } else {
-        event.returnValue = false;
+        evento.returnValue = false;
     }
     return false;
 }
