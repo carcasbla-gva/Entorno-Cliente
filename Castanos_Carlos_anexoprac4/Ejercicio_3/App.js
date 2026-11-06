@@ -9,7 +9,6 @@ window.onload = function () {
 };
 
 function detenerPropagacion(evento) {
-
     if (evento.stopPropagation) {
         evento.stopPropagation();
     } else {

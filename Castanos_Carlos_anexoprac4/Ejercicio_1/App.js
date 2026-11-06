@@ -1,4 +1,4 @@
-window.onload = function() {
+window.onload = function () {
     let formulario = document.getElementById("miFormulario");
 
     // Asignamos el manejador del evento submit
@@ -13,16 +13,10 @@ function validarYCancelarEnvio(evento) {
 
     if (c1 === "" || c2 === "" || c3 === "") {
         alert("Envío cancelado: Hay campos vacíos en el formulario.");
-
-        if (evento.preventDefault) {
-            evento.preventDefault();
-        } else {
-            evento.returnValue = false;
-        }
-
-        return false;
+        evento.preventDefault();
+    }
+    else {
+        alert("Formulario enviado con éxito.");
     }
 
-    alert("Formulario enviado con éxito.");
-    return true;
 }
