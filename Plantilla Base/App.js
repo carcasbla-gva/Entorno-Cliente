@@ -1,48 +1,34 @@
-// 1. Inicialización del objeto XMLHttpRequest como en el PDF
-var XMLHttpRequestObject = false;
-
-if (window.XMLHttpRequest) {
-    XMLHttpRequestObject = new XMLHttpRequest();
-} else if (window.ActiveXObject) {
-    XMLHttpRequestObject = new ActiveXObject("Microsoft.XMLHTTP");
-}
-
 // 2. Evento semántico al cargar
 window.onload = function () {
+    objecto = new XMLHttpRequest();
     var boton = document.getElementById("btnMostrar");
 
     boton.onclick = function () {
         // Llamamos a sacardatos pasando el json, el contenedor y la función que lo procesa
-        sacardatos("datos.json", "contenedor", mostrarDatosJSON);
+        sacardatos("datos.json", "contenedor");
     };
 };
 
 // 3. Función sacardatos
-function sacardatos(datos, idDiv, procesarEspecial) {
-    if (XMLHttpRequestObject) {
-        var objeto = document.getElementById(idDiv);
+function sacardatos(datos, idDiv) {
+    if (objecto) {
+        var lugar = document.getElementById(idDiv);
 
-        XMLHttpRequestObject.open("GET", datos);
+        objecto.open("GET", datos);
 
-        XMLHttpRequestObject.onreadystatechange = function () {
-            if (XMLHttpRequestObject.readyState == 4 && XMLHttpRequestObject.status == 200) {
-                if (procesarEspecial) {
-                    procesarEspecial(XMLHttpRequestObject, objeto);
-                } else {
-                    objeto.innerHTML = XMLHttpRequestObject.responseText;
-                }
+        objecto.onreadystatechange = function () {
+            if (objecto.readyState == 4 && objecto.status == 200) {
+                mostrarDatosJSON(objecto, lugar);
             }
         };
-
-        XMLHttpRequestObject.send(null);
+        objecto.send(null);
     }
 }
 
 // 4. Función específica para convertir y pintar el JSON
-function mostrarDatosJSON(xhr, objeto) {
+function mostrarDatosJSON(xhr, respuestaLugar) {
     var info = JSON.parse(xhr.responseText);
-
-    objeto.innerHTML = 
+    respuestaLugar.innerHTML = 
         "<p><strong>Nombre:</strong> " + info.nombre + "</p>" +
         "<p><strong>Curso:</strong> " + info.curso + "</p>" +
         "<p><strong>Asignatura:</strong> " + info.asignatura + "</p>" +
