@@ -1,18 +1,17 @@
 window.onload = function() {
-    var form = document.getElementById("miFormulario");
-    var inputNombre = document.getElementById("nombre");
-    var selectAficion = document.getElementById("aficion");
-    var textareaObs = document.getElementById("observaciones");
+    let form = document.getElementById("miFormulario");
+    let inputNombre = document.getElementById("nombre");
+    let selectAficion = document.getElementById("aficion");
+    let textareaObs = document.getElementById("observaciones");
 
-    // 1. Establecer el foco en el campo nombre al cargar la página
+    // Establecer el foco en el campo nombre al cargar la página
     inputNombre.focus();
 
-    // 2. Evento onchange en la lista desplegable de aficiones
+    // Evento onchange en la lista desplegable de aficiones
     selectAficion.onchange = function() {
-        var longitud = this.options.length;
-        var indice = this.selectedIndex;
-        var valor = this.options[indice].value;
-
+        let longitud = this.options.length;
+        let indice = this.selectedIndex;
+        let valor = this.options[indice].value;
         alert(
             "La longitud de la lista es " + longitud + "\n" +
             "El índice seleccionado es el " + indice + "\n" +
@@ -20,48 +19,40 @@ window.onload = function() {
         );
     };
 
-    // 3. Limitar el textarea a 150 caracteres
-    textareaObs.onkeypress = function(e) {
-        var evento = e || window.event;
-        // Permitir teclas de control como borrar (backspace/delete)
-        var codigo = evento.charCode || evento.keyCode;
-
-        if (this.value.length >= 150 && codigo !== 8 && codigo !== 0) {
-            return false;
+    // Limitar el textarea a 150 caracteres
+    textareaObs.onkeypress = function(event) {        
+        if (this.value.length >= 150) {
+            event.preventDefault();
         }
     };
-
+/*
     // También se valida al pegar texto
     textareaObs.oninput = function() {
         if (this.value.length > 150) {
             this.value = this.value.substring(0, 150);
         }
     };
-
-    // 4. Validaciones al enviar el formulario (onsubmit)
-    form.onsubmit = function(e) {
-        var evento = e || window.event;
-        var campoDni = document.getElementById("dni").value.trim();
-        var campoTelefono = document.getElementById("telefono").value.trim();
+*/
+    // Validaciones al enviar el formulario (onsubmit)
+    form.onsubmit = function(event) {
+        let campoDni = document.getElementById("dni").value.trim();
+        let campoTelefono = document.getElementById("telefono").value.trim();
 
         // Validar DNI obligatorio
         if (campoDni === "") {
             alert("Error: El campo DNI es obligatorio.");
             document.getElementById("dni").focus();
-            if (evento.preventDefault) evento.preventDefault();
-            return false;
+            event.preventDefault();
         }
 
         // Validar Teléfono: 9 dígitos consecutivos sin espacios ni guiones
-        var patronTelefono = /^\d{9}$/;
-        if (campoTelefono !== "" && !patronTelefono.test(campoTelefono)) {
+        else if (!/^\d{9}$/.test(campoTelefono)) {
             alert("Error: El teléfono debe estar formado por 9 dígitos consecutivos.");
             document.getElementById("telefono").focus();
-            if (evento.preventDefault) evento.preventDefault();
-            return false;
+            event.preventDefault();
         }
-
+        else {
         alert("Formulario validado correctamente. Guardando cambios...");
-        return true;
+        }
     };
 };
