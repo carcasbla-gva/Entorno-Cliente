@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<catalogo>
+    <modulo>
+        <nombre>Desarrollo Web en Entorno Cliente</nombre>
+        <curso>2º DAW</curso>
+    </modulo>
+    <modulo>
+        <nombre>Desarrollo Web en Entorno Servidor</nombre>
+        <curso>2º DAW</curso>
+    </modulo>
+    <modulo>
+        <nombre>Despliegue de Aplicaciones Web</nombre>
+        <curso>2º DAW</curso>
+    </modulo>
+</catalogo>
