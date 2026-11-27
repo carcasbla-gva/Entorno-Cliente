@@ -1,0 +1,1 @@
+Hola a todos, este es el contenido cargado de forma asíncrona con AJAX desde un fichero de texto.
